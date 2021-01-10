@@ -15,11 +15,11 @@ const STORE = {
       header: 'Third list',
       cardIds: [ 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm' ],
     },
-    {
+    /* {
       id: '4',
       header: 'Fourth list',
       cardIds: [ 'l', 'm' ],
-    },
+    }, */
   ],
   allCards: {
     'a': { id: 'a', title: 'First card', content: 'lorem ipsum' },
