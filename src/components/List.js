@@ -13,11 +13,19 @@ function List(props) {
       {props.cards.map((card) =>
           <Card
             key={card.id}
+            id={card.id}
             title={card.title}
             content={card.content}
+            onDeleteCard={props.onDeleteCard}
           />
         )}
-        <button type="button" className="List-add-button">+ add a card</button>
+        <button 
+          type="button" 
+          className="List-add-button"
+          onClick={() => props.onAddCard(props.id)}
+          // onClick={() => console.log(props.id)}
+          >+ add a card
+        </button>
       </div>
     </section>
   )
