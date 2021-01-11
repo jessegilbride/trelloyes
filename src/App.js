@@ -47,12 +47,6 @@ class App extends React.Component {
     console.log('handleDeleteCard() ran');
     // console.log({cardId});
 
-    /* function omit(listsObj, cardToOmit) {
-      let {[cardToOmit]: _, ...rest} = listsObj; // how does this know the card ID is the first member/property of the list?
-      return rest;
-    }
-    const listsWithoutDeletedCard = omit(this.state.store.lists, cardId); */
-
     function removeDeletedCardFromLists(currentLists, cardToRemove) {
       // map over lists
       const updatedLists = currentLists.map(list => {
@@ -61,45 +55,41 @@ class App extends React.Component {
           // if this is not the card to remove, keep/return it
           if(currentCardId !== cardToRemove) {
             return currentCardId
-          } // do I need to add an else for when cartToRemove is found?
+          }
+          return
         });
         // put the updated cards into the list
         list.cardIds = updatedCardIds;
 
         return list;
       })
-
       return updatedLists;
-
-      /* let indexToRemove = ??? // using findIndexOf and splice? */
     }
 
     const updatedLists = removeDeletedCardFromLists(this.state.store.lists, cardId);
-    console.log(typeof(updatedLists));
     console.log(updatedLists);
-    // console.table(this.state.store);
-    // console.table(this.state.store.lists);
+    
+    function omit(allCards, cardToOmit) {
+      let {[cardToOmit]: _, ...otherCards} = allCards; // how does this know the card ID is the first member/property of the list?
+      return otherCards;
+    }
+    const updatedCards = omit(this.state.store.allCards, cardId);
+    console.log(updatedCards);
 
     // this.forceUpdate();
 
-    /* this.setState({
+    this.setState({
       store: {
-        lists: updatedLists
+        lists: updatedLists,
+        allCards: updatedCards
       }
-    }); */
-
-    // console.log(this.state.store.lists === listsWithoutDeletedCard ? 'lists do match' : 'lists do not match');
-    // console.table(this.state.store.lists);
-    // console.table(listsWithoutDeletedCard);
+    });
 
   }
 
   render() {
     console.log('render() ran');
-    // console.log(this.state.store)
-    console.table(this.state.store)
-    // console.table(this.state.store.lists)
-    // console.table(this.state.store.allCards)
+    console.log(this.state.store.lists);
 
     return (
       <main className="App">
